@@ -2,7 +2,7 @@
 
 Ryo Kamoi, Tanya Goyal, Juan Diego Rodriguez, Greg Durrett
 
-This repository contains the dataset for "WiCE: Real-World Entailment for Claims in Wikipedia".
+This repository contains the dataset for "[WiCE: Real-World Entailment for Claims in Wikipedia](https://arxiv.org/pdf/2303.01432.pdf)".
 
 ## WiCE
 
