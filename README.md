@@ -55,3 +55,9 @@ Each sub-directory includes jsonl files for train, dev, and test sets. Here is a
 `claim_split` directory includes prompts for Claim-Split, a method to decompose claims by using GPT-3. We use different prompts for different datasets in the experiments in this work, so we provide prompts for WiCE, VitaminC, PAWS, and FRANK (XSum).
 
 ![](figures/claim_split.png)
+
+## License
+
+The WiCE dataset is based on Wikipedia articles and websites archived at Common Crawl. The majority of text content in Wikipedia is licensed under the [Creative Commons Attribution Share-Alike license](https://en.wikipedia.org/wiki/Wikipedia:Text_of_the_Creative_Commons_Attribution-ShareAlike_4.0_International_License) (CC-BY-SA). For more information about the Wikipedia policy, please refer to [this page](https://en.wikipedia.org/wiki/Wikipedia:Reusing_Wikipedia_content). You are also bound by the [Common Crawl terms of use](https://commoncrawl.org/terms-of-use) when using this dataset.
+
+Our annotations are released under the terms of [ODC-BY](https://opendatacommons.org/licenses/by/1-0/).
