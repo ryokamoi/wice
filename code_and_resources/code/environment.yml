@@ -1,0 +1,12 @@
+name: wice_public
+channels:
+  - defaults
+dependencies:
+  - python=3.9.18=h955ad1f_0
+  - pip=23.2.1=py39h06a4308_0
+  - pip:
+    - git+ssh://git@github.com/ryokamoi/easy_io@0.1.1
+    - git+ssh://git@github.com/ryokamoi/llm_wrapper@0.1.1
+    - numpy
+    - scikit-learn
+    - typed-argument-parser
