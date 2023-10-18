@@ -1,0 +1,5 @@
+code_and_resources/openai_api_key.txt
+code_and_resources/openai_organization.txt
+
+.vscode
+*__pycache__
