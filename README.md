@@ -1,16 +1,42 @@
 # WiCE: Real-World Entailment for Claims in Wikipedia
 
-Ryo Kamoi, Tanya Goyal, Juan Diego Rodriguez, Greg Durrett
+This repository contains dataset and code for the paper [WiCE: Real-World Entailment for Claims in Wikipedia](https://arxiv.org/abs/2303.01432) (EMNLP 2023).
 
-This repository contains the dataset for "[WiCE: Real-World Entailment for Claims in Wikipedia](https://arxiv.org/pdf/2303.01432.pdf)".
+Authors: Ryo Kamoi, Tanya Goyal, Juan Diego Rodriguez, Greg Durrett
 
-## WiCE
+```bibtex
+@inproceedings{kamoi-etal-2023-wice,
+    author = {Kamoi, Ryo and Goyal, Tanya and Rodriguez, Juan Diego and Durrett, Greg},
+    booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing},
+    title = {WiCE: Real-World Entailment for Claims in Wikipedia},
+    year = {2023}
+}
+```
 
-`data` directory includes the WiCE dataset.
+* The [data](data) directory includes the WiCE dataset.
+* The [code_and_resources](code_and_resources) directory includes code and model outputs of the experiments in the paper. Please refer to [code_and_resources/README.md](code_and_resources/README.md) for details.
+
+## Table of Contents
+
+* [WiCE Dataset](#wice-dataset)
+  * [Entailment and Retrieval](#entailment-and-retrieval)
+  * [Non-Supported Tokens](#non-supported-tokens)
+* [Claim-Split](#claim-split)
+* [How to Evaluate Your Models on WiCE?](#how-to-evaluate-your-models-on-wice)
+  * [Oracle Retrieval Dataset](#oracle-retrieval-dataset)
+* [License](#license)
+
+## WiCE Dataset
+
+WiCE is a fine-grained textual entailment dataset built on natural claim and evidence pairs extracted from Wikipedia. Given a sentence in Wikipedia and the corresponding article(s) it cites, we annotate the entailment label, a list of sentences in the cited article(s) that support the claim sentence, and tokens in the claim that are unsupported by the article(s).
+
+This dataset can be used to evaluate a variety of tasks, but is primarily designed for three tasks: entailment classification, evidence sentence retrieval, and non-supported tokens detection.
+
+<img src="figures/wice_dataset.png" width="400">
 
 ### Entailment and Retrieval
 
-`data/entailment_retrieval` includes the WiCE dataset for entailment and retrieval task. `data/entailment_retrieval/claim` includes data with the original claims and `data/entailment_retrieval/subclaims` includes data with the decomposed claims (finegrained annotation by using Claim-Split).
+[data/entailment_retrieval](data/entailment_retrieval) includes the WiCE dataset for entailment and retrieval task. [data/entailment_retrieval/claim](data/entailment_retrieval/claim) includes data with the original claims and [data/entailment_retrieval/subclaim](data/entailment_retrieval/subclaim) includes data with the decomposed claims (finegrained annotation by using Claim-Split).
 
 Each sub-directory includes jsonl files for train, dev, and test sets. Here is an example of the data in the jsonl files:
 
@@ -35,7 +61,7 @@ Each sub-directory includes jsonl files for train, dev, and test sets. Here is a
 
 ### Non-Supported Tokens
 
-`data/non_supported_tokens` includes the WiCE dataset for non-supported tokens detection task. We only provide annotation for sub-claims that are annotated as `partially_supported`. We filtered out data points with low inter-annotator agreement (please refer to the paper for details).
+[data/non_supported_tokens](data/non_supported_tokens) includes the WiCE dataset for non-supported tokens detection task. We only provide annotation for sub-claims that are annotated as `partially_supported`. We filtered out data points with low inter-annotator agreement (please refer to the paper for details).
 
 ```json
 {
@@ -52,12 +78,22 @@ Each sub-directory includes jsonl files for train, dev, and test sets. Here is a
 
 ## Claim-Split
 
-`claim_split` directory includes prompts for Claim-Split, a method to decompose claims by using GPT-3. We use different prompts for different datasets in the experiments in this work, so we provide prompts for WiCE, VitaminC, PAWS, and FRANK (XSum).
+[claim_split](claim_split) directory includes prompts for Claim-Split, a method to decompose claims by using GPT-3. We use different prompts for different datasets in the experiments in this work, so we provide prompts for WiCE, VitaminC, PAWS, and FRANK (XSum).
 
 ![](figures/claim_split.png)
 
+## How to Evaluate Your Models on WiCE?
+
+When you evaluate entailment classification models on WiCE, unless your model can handle with very long input context, you have to retrieve evidence sentences from evidence articles as the first step. Please refer to our paper for possible approaches for evaluating models with limited input length on WiCE.
+
+If you evaluate evidence retrieval models, you can use the data in [data/entailment_retrieval](data/entailment_retrieval).
+
+### Oracle Retrieval Dataset
+
+If you are looking for simple NLI datasets with short evidence that do not require any retrieval models (like SNLI, MNLI, and ANLI), you can use our [oracle retrieval dataset](code_and_resources/entailment_inputs/oracle_chunks/). The oracle retrieval dataset simulates the situation that you have a perfect evidence retrieval model. When you report the result on this oracle retrieval data, you need to clearly mention that you use the oracle retrieval dataset, not the original WiCE dataset.
+
+We provide code for reproducing our experiment using GPT-3.5 and GPT-4 on the oracle retrieval dataset. Please refer to [code_and_resources/code/README.md](code_and_resources/code/README.md) for details.
+
 ## License
 
-The WiCE dataset is based on Wikipedia articles and websites archived at Common Crawl. The majority of text content in Wikipedia is licensed under the [Creative Commons Attribution Share-Alike license](https://en.wikipedia.org/wiki/Wikipedia:Text_of_the_Creative_Commons_Attribution-ShareAlike_4.0_International_License) (CC-BY-SA). For more information about the Wikipedia policy, please refer to [this page](https://en.wikipedia.org/wiki/Wikipedia:Reusing_Wikipedia_content). You are also bound by the [Common Crawl terms of use](https://commoncrawl.org/terms-of-use) when using this dataset.
-
-Our annotations are released under the terms of [ODC-BY](https://opendatacommons.org/licenses/by/1-0/).
+Please refer to the [LICENCE.md](./LICENSE.md) file.
