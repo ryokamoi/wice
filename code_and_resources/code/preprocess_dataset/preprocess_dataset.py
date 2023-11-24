@@ -187,7 +187,9 @@ if __name__ == "__main__":
     oracles_output_list: list[dict] = []
 
     for raw_data in tqdm(original_dataset):
-        output_dict: ProcessedData = {"label":"", "claim": "", "evidence": "", "meta": {"id": raw_data["meta"]["id"]}}
+        metadata = raw_data["meta"]
+        metadata.pop("claim_context")
+        output_dict: ProcessedData = {"label":"", "claim": "", "evidence": "", "meta": metadata}
         
         if args.add_claim_context:
             # add claim context (title of the wikipedia article, section title, and last 128 tokens of the context).
