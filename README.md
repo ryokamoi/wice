@@ -6,10 +6,21 @@ Authors: Ryo Kamoi, Tanya Goyal, Juan Diego Rodriguez, Greg Durrett
 
 ```bibtex
 @inproceedings{kamoi-etal-2023-wice,
-    author = {Kamoi, Ryo and Goyal, Tanya and Rodriguez, Juan Diego and Durrett, Greg},
-    booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing},
-    title = {WiCE: Real-World Entailment for Claims in Wikipedia},
-    year = {2023}
+    title = "{W}i{CE}: Real-World Entailment for Claims in {W}ikipedia",
+    author = "Kamoi, Ryo  and
+      Goyal, Tanya  and
+      Rodriguez, Juan  and
+      Durrett, Greg",
+    editor = "Bouamor, Houda  and
+      Pino, Juan  and
+      Bali, Kalika",
+    booktitle = "Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing",
+    month = dec,
+    year = "2023",
+    address = "Singapore",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2023.emnlp-main.470",
+    pages = "7561--7583",
 }
 ```
 
